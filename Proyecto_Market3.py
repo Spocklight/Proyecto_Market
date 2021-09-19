@@ -177,16 +177,16 @@ plt.show()
 
 model.evaluate(test_set, y_test)
 
-X_new = test_set[:10]
+X_new = test_set[1:20]
 class_names = ["Comprar", "Vender"]
 y_prob1 = model.predict(X_new)
-print(y_prob1.round(2)) #Nos da la probabilidad de cada elemento y cada clase (Como solo son dos clases, solo aparece la probabilidad de que sea la primera)
+print(y_prob1.round(2)) #Nos da la probabilidad de cada elemento y cada clase (Como solo son dos clases, solo aparece la probabilidad de que sea la venta)
 
 #Podemos también predecir directamente:
 
 y_prob2 = 1 - y_prob1
 #y_prob = np.zeros(np.shape(y_prob1)[0], 2)
-y_prob = np.append(y_prob1.round(2), y_prob2.round(2), axis=1) #Unimos las probabilidades para cada una de las clases
+y_prob = np.append(y_prob2.round(2), y_prob1.round(2), axis=1) #Unimos las probabilidades para cada una de las clases
 print(y_prob)
 
 
@@ -196,7 +196,7 @@ print(clases_pred)
 
 #Lo comparamos con los valores reales:
 
-clases_reales = np.array(class_names)[y_test[:10]] 
+clases_reales = np.array(class_names)[y_test[1:20]] 
 print(clases_reales)                                                      
 
 #El modelo de momento no da nada. Posiblemente hubiese antes overfitting, porque teníamos mucha accuracy. Más adelante haremos tunning de parámetros a ver si mejora algo.
